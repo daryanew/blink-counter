@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f8f6ef" />
+    <meta name="description" content="A playful daily blink estimate based on your region, sleep, screen time, and exercise." />
+    <title>Blink Count — your day, in blinks</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="wordmark" href="#" aria-label="Blink Count home">
+        <span class="wordmark-icon" aria-hidden="true">b.</span>
+        <span>blink<span class="wordmark-light">count</span></span>
+      </a>
+      <span class="header-note"><span class="status-dot"></span> A tiny curiosity calculator</span>
+    </header>
+
+    <main>
+      <section class="intro" aria-labelledby="page-title">
+        <div class="intro-copy">
+          <p class="eyebrow">The little things add up</p>
+          <h1 id="page-title">Your day,<br />in <span>blinks.</span></h1>
+          <p class="intro-text">A playful estimate of how many times your eyes might blink today, based on where you are and how you spent last night and today.</p>
+          <a class="jump-link" href="#calculator">Count my blinks <span aria-hidden="true">↓</span></a>
+        </div>
+        <div class="eye-art" aria-hidden="true">
+          <div class="sun-shape"></div>
+          <svg class="eye-illustration" viewBox="0 0 360 220" fill="none">
+            <path d="M37 111c36-50 85-75 143-75s107 25 143 75c-36 50-85 75-143 75S73 161 37 111Z" fill="#FFFDF8" stroke="#242A29" stroke-width="8" stroke-linejoin="round"/>
+            <circle cx="180" cy="111" r="52" fill="#B5D9C9" stroke="#242A29" stroke-width="7"/>
+            <circle cx="180" cy="111" r="28" fill="#242A29"/>
+            <circle cx="197" cy="92" r="8" fill="#FFFDF8"/>
+            <path d="M60 75 43 57M93 50 82 26M135 39l-4-25M226 39l5-25M267 51l12-24M300 75l18-18" stroke="#F26A53" stroke-width="7" stroke-linecap="round"/>
+            <path d="M64 169c6 8 14 12 23 14M270 183c9-2 17-6 23-14" stroke="#B5D9C9" stroke-width="7" stroke-linecap="round"/>
+          </svg>
+          <span class="art-caption">blink and you’ll miss it <span aria-hidden="true">✳</span></span>
+        </div>
+      </section>
+
+      <section class="calculator-section" id="calculator" aria-labelledby="calculator-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Your blink forecast</p>
+            <h2 id="calculator-title">What’s a day in your eyes like?</h2>
+          </div>
+          <p>Four little details. One very big number.</p>
+        </div>
+
+        <div class="calculator">
+          <form class="input-panel" id="blink-form">
+            <div class="form-heading">
+              <span class="step-badge">01</span>
+              <div><h3>Your day, so far</h3><p>Change any answer to update your estimate.</p></div>
+            </div>
+
+            <label class="field-label" for="region">Where are you?</label>
+            <div class="select-wrap">
+              <select id="region" name="region">
+                <option value="uzbekistan">Uzbekistan</option>
+                <option value="brazil">Brazil</option>
+                <option value="russia">Russia</option>
+                <option value="south-korea">South Korea</option>
+                <option value="saudi-arabia">Saudi Arabia</option>
+                <option value="great-britain">Great Britain</option>
+                <option value="france">France</option>
+                <option value="italy">Italy</option>
+                <option value="spain">Spain</option>
+              </select>
+              <span class="select-arrow" aria-hidden="true">⌄</span>
+            </div>
+            <p class="field-hint" id="climate-hint">A dry-climate estimate is applied for this region.</p>
+
+            <div class="field-grid">
+              <label class="number-field" for="sleep">
+                <span class="field-label">Hours you slept <span class="field-emoji" aria-hidden="true">☾</span></span>
+                <span class="number-wrap"><input id="sleep" name="sleep" type="number" min="0" max="14" step="0.5" value="7.5" inputmode="decimal" /><span>hrs</span></span>
+              </label>
+              <label class="number-field" for="screen">
+                <span class="field-label">Hours at a computer <span class="field-emoji" aria-hidden="true">⌘</span></span>
+                <span class="number-wrap"><input id="screen" name="screen" type="number" min="0" max="16" step="0.5" value="6" inputmode="decimal" /><span>hrs</span></span>
+              </label>
+              <label class="number-field" for="sport">
+                <span class="field-label">Hours doing sports <span class="field-emoji" aria-hidden="true">↗</span></span>
+                <span class="number-wrap"><input id="sport" name="sport" type="number" min="0" max="12" step="0.5" value="1" inputmode="decimal" /><span>hrs</span></span>
+              </label>
+            </div>
+            <p class="form-error" id="form-error" role="alert" hidden></p>
+            <div class="awake-note"><span aria-hidden="true">◷</span><span>You’re awake for <strong id="awake-hours">16.5 hours</strong> of the day.</span></div>
+          </form>
+
+          <section class="result-panel" aria-live="polite" aria-atomic="true" aria-labelledby="result-title">
+            <div class="result-overline"><span class="result-dot"></span> YOUR ESTIMATE</div>
+            <div class="result-number-row">
+              <div>
+                <h3 id="result-title" class="result-number">14,380</h3>
+                <p class="result-subtitle">blinks in a day</p>
+              </div>
+              <div class="eye-stamp" aria-hidden="true">
+                <svg viewBox="0 0 64 42" fill="none"><path d="M4 21C11 11 20 6 32 6s21 5 28 15c-7 10-16 15-28 15S11 31 4 21Z" stroke="currentColor" stroke-width="3"/><circle cx="32" cy="21" r="8" fill="currentColor"/></svg>
+              </div>
+            </div>
+            <p class="result-range">That’s about <strong id="rate-per-minute">15</strong> blinks each awake minute.</p>
+
+            <div class="result-divider"></div>
+            <p class="breakdown-title">What nudges the number?</p>
+            <div class="breakdown-row"><span><i class="breakdown-icon climate-icon" aria-hidden="true">☼</i> Regional climate</span><strong id="climate-effect">+10%</strong></div>
+            <div class="breakdown-row"><span><i class="breakdown-icon sleep-icon" aria-hidden="true">☾</i> Sleep adjustment</span><strong id="sleep-effect">+2%</strong></div>
+            <div class="breakdown-row"><span><i class="breakdown-icon screen-icon" aria-hidden="true">⌘</i> Screen-time uplift</span><strong id="screen-effect">+20%</strong></div>
+            <div class="breakdown-row"><span><i class="breakdown-icon sport-icon" aria-hidden="true">↗</i> Active hours</span><strong id="sport-effect">+12%</strong></div>
+
+            <p class="estimate-disclaimer"><span aria-hidden="true">ⓘ</span> Just-for-fun math, not a measurement. Real blink rates vary from person to person and moment to moment.</p>
+          </section>
+        </div>
+        <p class="method-note"><strong>How we estimate:</strong> We start at 15.5 blinks per minute while awake, then apply a small regional climate adjustment, a gentle short-sleep adjustment, and modest uplifts during screen and sports hours. Regional climate is a broad approximation, not live local weather.</p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <a class="wordmark" href="#" aria-label="Blink Count home"><span class="wordmark-icon" aria-hidden="true">b.</span><span>blink<span class="wordmark-light">count</span></span></a>
+      <span>A tiny reminder to look up and blink.</span>
+    </footer>
+  </body>
+</html>
